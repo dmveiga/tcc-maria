@@ -2,20 +2,15 @@ package com.fumec;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Hello world!
- *
- */
-public class App {
-	// JDBC driver name and database URL
+public class Pesquisar {
 
 	static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
 	static final String DB_URL = "jdbc:mariadb://127.0.0.1/tcc";
 
-	// Database credentials
 	static final String USER = "root";
 	static final String PASS = "admin";
 
@@ -23,45 +18,57 @@ public class App {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
-			// STEP 2: Register JDBC driver
+			
+			// Registrar driver jdbc
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			// STEP 3: Open a connection
-			System.out.println("Connecting to a selected database...");
+			// Abrir conexão
+			System.out.println("Conectando ao MariaDb");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("Connected database successfully...");
+			System.out.println("Conexão bem sucedida");
 
-			// STEP 4: Execute a query
-			System.out.println("Creating table in given database...");
+			// Executar query
+			System.out.println("Pesquisando dados...");
 			stmt = conn.createStatement();
+			
+			String sql = "SELECT * FROM endereco e WHERE e.rua LIKE 'R. Teixeira'";
 
-			String sql = "CREATE TABLE REGISTRATION " + "(id INTEGER not NULL, " + " first VARCHAR(255), "
-					+ " last VARCHAR(255), " + " age INTEGER, " + " PRIMARY KEY ( id ))";
+			long inicio = System.nanoTime();
+			ResultSet rs = stmt.executeQuery(sql);
+			long tempoDecorrido = System.nanoTime() - inicio;
+			
+			while (rs.next()) {
+				String rua = rs.getString("rua");
+				System.out.println(rua + "\n");
+			}
 
-			stmt.executeUpdate(sql);
-			System.out.println("Created table in given database...");
+			double segundos = (double) tempoDecorrido / 1000000000.0;
+
+			System.out.println("Registros inseridos com sucesso!");
+			System.out.println("Tempo decorrido(em segundos): " + segundos);
+
 		} catch (SQLException se) {
-			// Handle errors for JDBC
+			// Erros para JDBC
 			se.printStackTrace();
 		} catch (Exception e) {
-			// Handle errors for Class.forName
+			// Erros para Class.forName
 			e.printStackTrace();
 		} finally {
-			// finally block used to close resources
+			// Fechar conexão
 			try {
 				if (stmt != null) {
 					conn.close();
 				}
 			} catch (SQLException se) {
-			} // do nothing
+			}
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (SQLException se) {
 				se.printStackTrace();
-			} // end finally try
-		} // end try
-		System.out.println("Goodbye!");
-	}// end main
+			}
+		}
+	}
+
 }
