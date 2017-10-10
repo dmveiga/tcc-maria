@@ -140,7 +140,8 @@ public class Inserir {
 						+ " VALUES (2, 2, 'William Henry Gates III', '1992-02-05', 'bill@microsoft.com', false, 50000000.75);";
 				sql += "INSERT INTO dependente (ID_FUNCIONARIO, NOME, DATA_NASCIMENTO, EMAIL, PARENTESCO)"
 						+ " VALUES (1, 'Marília Mendonça', '1995-07-22', 'marilia@hotmail.com', 'prima');";
-
+				stmt.executeUpdate(sql);
+				
 				sql += "INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, CEP)"
 						+ " VALUES ('Brasil', 'RJ', 'Rio de Janeiro', 'Lapa', 'R. Teixeira de Freitas', 31, '20021350');\n";
 				sql += "INSERT INTO empresa (ID_ENDERECO, NOME, DATA_CRIACAO, NUM_FUNCIONARIOS, LUCRO)"
