@@ -45,75 +45,11 @@ public class Inserir {
 			System.out.println("Inserindo dados...");
 			stmt = conn.createStatement();
 			String sql = "";
+			int loops = quantidade / 3;
 			long inicio = System.nanoTime();
-			for (int i = 0; i < quantidade / 3; i++) {
-				// //3 endereços diferentes
-				// stmt.executeQuery("INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA,
-				// NUMERO, CEP)"
-				// + " VALUES ('Brasil', 'MG', 'Belo Horizonte', 'Santa Efigênia', 'Av. dos
-				// Andradas', 3000, '30260070');");
-				// stmt.executeQuery("INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA,
-				// NUMERO, CEP)"
-				// + " VALUES ('Brasil', 'SP', 'São Paulo', 'Morumbi', 'Av. Dr. Chucri Zaidan',
-				// 1240, '04711130');");
-				// stmt.executeQuery("INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA,
-				// NUMERO, CEP)"
-				// + " VALUES ('Brasil', 'RJ', 'Rio de Janeiro', 'Lapa', 'R. Teixeira de
-				// Freitas', 31, '20021350');");
-				// // 3 empresas diferentes
-				// stmt.executeQuery("INSERT INTO empresa (ID_ENDERECO, NOME, DATA_CRIACAO,
-				// NUM_FUNCIONARIOS, LUCRO)"
-				// + " VALUES (1, 'Unisys', '1900-01-01', 100000, 5000000000.50);");
-				// stmt.executeQuery("INSERT INTO empresa (ID_ENDERECO, NOME, DATA_CRIACAO,
-				// NUM_FUNCIONARIOS, LUCRO)"
-				// + " VALUES (2, 'Microsoft', '1950-02-02', 200000, 10000000000.50);");
-				// stmt.executeQuery("INSERT INTO empresa (ID_ENDERECO, NOME, DATA_CRIACAO,
-				// NUM_FUNCIONARIOS, LUCRO)"
-				// + " VALUES (3, 'Google', '2000-05-05', 300000, 15000000000.50);");
-				// //3 funções diferentes
-				// stmt.executeQuery("INSERT INTO funcao (NOME, DESCRICAO)"
-				// + " VALUES ('Desenvolvedor Java Jr.', 'Desenvolver, analisar requisitos e
-				// testar aplicações Java Web,"
-				// +" utuilizando conhecimentos em HTML, Javascript, Css, entre outros');");
-				// stmt.executeQuery("INSERT INTO funcao (NOME, DESCRICAO)"
-				// + " VALUES ('Gerente de Projetos', 'Os gerentes de projetos cultivam as
-				// habilidades das pessoas para desenvolver"
-				// + " confiança e comunicação entre todas as partes interessadas do projeto:
-				// seus patrocinadores, aqueles que farão"
-				// + " uso dos resultados do projeto, aqueles que dispõem dos recursos
-				// necessários e os membros da equipe do projeto');");
-				// stmt.executeQuery("INSERT INTO funcao (NOME, DESCRICAO)"
-				// + " VALUES ('SCRUM Master', 'O Scrum Master procura assegurar que a equipe
-				// respeite e siga os valores e as práticas"
-				// + " do Scrum. Ele também protege a equipe assegurando que ela não se
-				// comprometa excessivamente com relação àquilo que"
-				// + " é capaz de realizar durante um Sprint.');");
-				// //3 funcionários diferentes
-				// stmt.executeQuery("INSERT INTO funcionario (ID_EMPRESA, ID_FUNCAO, NOME,
-				// DATA_NASCIMENTO, EMAIL, ATIVO, SALARIO)"
-				// + " VALUES (1, 3, 'Neymar da Silva Santos Júnior', '1992-02-05',
-				// 'neymar.jr@gmail.com', true, 10000000.23);");
-				// stmt.executeQuery("INSERT INTO funcionario (ID_EMPRESA, ID_FUNCAO, NOME,
-				// DATA_NASCIMENTO, EMAIL, ATIVO, SALARIO)"
-				// + " VALUES (2, 2, 'William Henry Gates III', '1992-02-05',
-				// 'bill@microsoft.com', false, 50000000.75);");
-				// stmt.executeQuery("INSERT INTO funcionario (ID_EMPRESA, ID_FUNCAO, NOME,
-				// DATA_NASCIMENTO, EMAIL, ATIVO, SALARIO)"
-				// + " VALUES (3, 1, 'Gisele Caroline Bündchen', '1975-10-28',
-				// 'gisele@outlook.com', true, 15000000.99);");
-				// //3 dependentes diferentes
-				// stmt.executeQuery("INSERT INTO dependente (ID_FUNCIONARIO, NOME,
-				// DATA_NASCIMENTO, EMAIL, PARENTESCO)"
-				// + " VALUES (1, 'Alok Achkar Peres Petrillo', '1991-08-26',
-				// 'alok@artistfactory.com', 'filho');");
-				// stmt.executeQuery("INSERT INTO dependente (ID_FUNCIONARIO, NOME,
-				// DATA_NASCIMENTO, EMAIL, PARENTESCO)"
-				// + " VALUES (1, 'Marília Mendonça', '1995-07-22', 'marilia@hotmail.com',
-				// 'prima');");
-				// stmt.executeQuery("INSERT INTO dependente (ID_FUNCIONARIO, NOME,
-				// DATA_NASCIMENTO, EMAIL, PARENTESCO)"
-				// + " VALUES (1, 'Larissa de Macedo Machado', '1993-03-30',
-				// 'anitta@somlivre.com.br', 'filha');");
+
+			
+			for (int i = 0; i < loops ; i++) {
 
 				sql = "INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, CEP)"
 						+ " VALUES ('Brasil', 'MG', 'Belo Horizonte', 'Santa Efigênia', 'Av. dos Andradas', 3000, '30260070');\n";
@@ -142,7 +78,7 @@ public class Inserir {
 						+ " VALUES (1, 'Marília Mendonça', '1995-07-22', 'marilia@hotmail.com', 'prima');";
 				stmt.executeUpdate(sql);
 				
-				sql += "INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, CEP)"
+				sql = "INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, CEP)"
 						+ " VALUES ('Brasil', 'RJ', 'Rio de Janeiro', 'Lapa', 'R. Teixeira de Freitas', 31, '20021350');\n";
 				sql += "INSERT INTO empresa (ID_ENDERECO, NOME, DATA_CRIACAO, NUM_FUNCIONARIOS, LUCRO)"
 						+ " VALUES (3, 'Google', '2000-05-05', 300000, 15000000000.50);\n";
@@ -157,6 +93,19 @@ public class Inserir {
 				stmt.executeUpdate(sql);
 
 			}
+			sql = "INSERT INTO endereco (PAIS, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, CEP)"
+					+ " VALUES ('Brasil', 'RJ', 'Rio de Janeiro', 'Lapa', 'R. Teixeira de Freitas', 31, '20021350');\n";
+			sql += "INSERT INTO empresa (ID_ENDERECO, NOME, DATA_CRIACAO, NUM_FUNCIONARIOS, LUCRO)"
+					+ " VALUES (3, 'Google', '2000-05-05', 300000, 15000000000.50);\n";
+			sql += "INSERT INTO funcao (NOME, DESCRICAO)"
+					+ " VALUES ('SCRUM Master', 'O Scrum Master procura assegurar que a equipe respeite e siga os valores e as práticas"
+					+ " do Scrum. Ele também protege a equipe assegurando que ela não se comprometa excessivamente com relação àquilo que"
+					+ " é capaz de realizar durante um Sprint.');\n";
+			sql += "INSERT INTO funcionario (ID_EMPRESA, ID_FUNCAO, NOME, DATA_NASCIMENTO, EMAIL, ATIVO, SALARIO)"
+					+ " VALUES (3, 1, 'Gisele Caroline Bündchen', '1975-10-28', 'gisele@outlook.com', true, 15000000.99);";
+			sql += "INSERT INTO dependente (ID_FUNCIONARIO, NOME, DATA_NASCIMENTO, EMAIL, PARENTESCO)"
+					+ " VALUES (1, 'Larissa de Macedo Machado', '1993-03-30', 'anitta@somlivre.com.br', 'filha');";
+			stmt.executeUpdate(sql);
 			long tempoDecorrido = System.nanoTime() - inicio;
 
 			double segundos = (double) tempoDecorrido / 1000000000.0;
